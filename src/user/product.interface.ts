@@ -1,6 +1,6 @@
 /**
  * @author: ntwari egide
- * @description: User interface implementation
+ * @description: product interface implementation
  */
 
 
