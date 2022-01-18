@@ -1,6 +1,6 @@
 /**
  * @author: ntwari egide
- * @description: Product Schema modal implementation
+ * @description: Ordered Product Schema modal implementation
  */
 
 
@@ -11,6 +11,6 @@ import { ProductSchema } from 'src/user/entities/product.entity';
  
     product: ProductSchema,
  
-    quality: Number
+    quantity: Number
  
  });
