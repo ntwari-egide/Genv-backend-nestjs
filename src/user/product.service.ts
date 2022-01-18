@@ -35,7 +35,7 @@ export class ProductService {
 
   }
 
-  checkUserExistance = (id: String) : Product => {
+  checkProductExistence = (id: String) : Product => {
     let product : any
     try {
       product = this.productModel.findById(id).exec()
@@ -55,13 +55,13 @@ export class ProductService {
 
   async findOne(id: String): Promise<Product> {
 
-    return this.checkUserExistance(id)
+    return this.checkProductExistence(id)
 
   }
 
   async update(id: String, updateProductDto: UpdateProductDto): Promise<Product> {
     
-    this.checkUserExistance(id)
+    this.checkProductExistence(id)
 
     this.logger.log('Updating a product with id : '+id)
 
@@ -71,7 +71,7 @@ export class ProductService {
 
   async remove(id: String) {
     
-    this.checkUserExistance(id)
+    this.checkProductExistence(id)
 
     this.logger.log('Deleting a product with id : '+id)
 
