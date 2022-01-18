@@ -3,7 +3,7 @@ import { OrderedProductsService } from './ordered-products.service';
 import { CreateOrderedProductDto } from './dto/create-ordered-product.dto';
 import { UpdateOrderedProductDto } from './dto/update-ordered-product.dto';
 
-@Controller('ordered-products')
+@Controller('/api/v1/ordered-products')
 export class OrderedProductsController {
   constructor(private readonly orderedProductsService: OrderedProductsService) {}
 
@@ -19,16 +19,16 @@ export class OrderedProductsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.orderedProductsService.findOne(+id);
+    return this.orderedProductsService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateOrderedProductDto: UpdateOrderedProductDto) {
-    return this.orderedProductsService.update(+id, updateOrderedProductDto);
+    return this.orderedProductsService.update(id, updateOrderedProductDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.orderedProductsService.remove(+id);
+    return this.orderedProductsService.remove(id);
   }
 }
