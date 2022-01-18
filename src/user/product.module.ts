@@ -1,15 +1,15 @@
 /**
  * @author: ntwari egide
- * @description: User module implementation
+ * @description: Product module implementation
  */
 
 
 import { Module } from '@nestjs/common';
-import { UserService } from './user.service';
-import { UserController } from './user.controller';
-import { usersProvider } from './user.provider';
+import { productsProvider } from './product.provider';
 import { DatabaseModule } from 'src/database/database.module';
 import { ThrottlerModule } from '@nestjs/throttler';
+import { ProductsController } from './product.controller';
+import { ProductService } from './product.service';
 
   // protecting Denial of user attach by hackers - use throttler, limit 200 request in one minute
 
@@ -20,10 +20,10 @@ import { ThrottlerModule } from '@nestjs/throttler';
     ttl: 60,
     limit: 200,
   }),],
-  controllers: [UserController],
+  controllers: [ProductsController],
   providers: [
-    UserService,
-    ...usersProvider
+    ProductService,
+    ...productsProvider
   ]
 })
 export class UserModule {}

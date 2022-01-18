@@ -1,11 +1,11 @@
 /**
  * @author: ntwari egide
- * @description: User not found exception handler implementation
+ * @description: product not found exception handler implementation
  */
 
 import { HttpException, HttpStatus } from "@nestjs/common";
 
-export class UserNotFoundException extends HttpException{
+export class ProductNotFoundException extends HttpException{
     constructor(message: String){
         super({
             status: HttpStatus.NOT_FOUND,
