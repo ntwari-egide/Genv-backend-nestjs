@@ -6,6 +6,7 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { OrderedProductNotFoundException } from 'src/exceptions/OrderedProductNotFoundException';
+import { GlobalCustomizedApiResponse } from 'src/global-dto/api-response';
 import { ProductService } from 'src/product/product.service';
 import { CreateOrderedProductDto } from './dto/create-ordered-product.dto';
 import { UpdateOrderedProductDto } from './dto/update-ordered-product.dto';
@@ -23,6 +24,8 @@ export class OrderedProductsService {
   ){}
 
 
+  private responseHandler = new GlobalCustomizedApiResponse()
+
   private readonly logger = new Logger(OrderedProductsService.name)
 
 
@@ -39,10 +42,20 @@ export class OrderedProductsService {
     return newOrderedProduct.save()
   }
 
-  async findAll() : Promise<OrderedProduct[]>{
+  async findAll() : Promise<GlobalCustomizedApiResponse>{
     this.logger.log("Getting list of all ordered products ....")
 
-    return this.orderedProductModel.find().exec()
+    let data = await this.orderedProductModel.find().exec()
+
+    this.responseHandler.status = "success"
+
+    this.responseHandler.message = 'Getting all ordered products '
+
+    this.responseHandler.payload = data
+
+    this.responseHandler.length = data.length
+
+    return this.responseHandler
 
   }
 
@@ -66,10 +79,20 @@ export class OrderedProductsService {
   }
 
   findOne(id: String) {
-    return this.checkOrderedProductExistence(id)
+    let data = this.checkOrderedProductExistence(id)
+
+    this.responseHandler.status = "success"
+
+    this.responseHandler.message = 'Getting ordered product with id : '+id
+
+    this.responseHandler.payload = data
+
+    this.responseHandler.length = 1
+
+    return this.responseHandler
   }
 
-  async update(id: String, updateOrderedProductDto: UpdateOrderedProductDto) : Promise<OrderedProduct>{
+  async update(id: String, updateOrderedProductDto: UpdateOrderedProductDto) : Promise<GlobalCustomizedApiResponse>{
 
     let relatedProduct = this.productService.checkProductExistence(updateOrderedProductDto.productId)
 
@@ -79,7 +102,17 @@ export class OrderedProductsService {
 
     this.logger.log('Updating ordered product with id : '+id)
 
-    return this.orderedProductModel.findByIdAndUpdate(id, orderedProduct).exec()
+    let data = this.orderedProductModel.findByIdAndUpdate(id, orderedProduct).exec()
+
+    this.responseHandler.status = "success"
+
+    this.responseHandler.message = 'Updated ordered product with id : '+id
+
+    this.responseHandler.payload = data
+
+    this.responseHandler.length = 1
+
+    return this.responseHandler
 
   }
 
@@ -89,7 +122,17 @@ export class OrderedProductsService {
 
     this.logger.log('Deleting ordered product with id : '+id)
 
-    return this.orderedProductModel.findByIdAndRemove(id).exec()
+    let data = this.orderedProductModel.findByIdAndRemove(id).exec()
+
+    this.responseHandler.status = "success"
+
+    this.responseHandler.message = 'Deleted ordered product with id : '+id
+
+    this.responseHandler.payload = data
+
+    this.responseHandler.length = 1
+
+    return this.responseHandler
 
   }
 }
