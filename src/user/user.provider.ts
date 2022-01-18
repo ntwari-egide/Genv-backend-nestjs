@@ -4,7 +4,7 @@
  */
 
 import { Connection } from "mongoose";
-import { UserSchema } from "./entities/user.entity";
+import { UserSchema } from "./entities/product.entity";
 
  export const usersProvider = [
     {

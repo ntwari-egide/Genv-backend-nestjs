@@ -1,3 +1,8 @@
+/**
+ * @author: ntwari egide
+ * @description: database providers configuration file
+ */
+
 import * as mongoose from 'mongoose';
 
 export const databaseProviders = [

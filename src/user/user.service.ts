@@ -5,8 +5,8 @@
 
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { Model } from 'mongoose';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { CreateUserDto } from './dto/create-product.dto';
+import { UpdateUserDto } from './dto/update-product.dto';
 import { User } from './user.interface';
 import * as bcrypt from 'bcrypt';
 import { UserNotFoundException } from 'src/exceptions/UserNotFoundException';

@@ -1,3 +1,8 @@
+/**
+ * @author: ntwari egide
+ * @description: database module configuration file
+ */
+
 import { Module } from '@nestjs/common';
 import { databaseProviders } from './database.provider';
 
