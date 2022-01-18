@@ -9,7 +9,7 @@ export const databaseProviders = [
   {
     provide: 'DATABASE_CONNECTION',
     useFactory: (): Promise<typeof mongoose> =>
-      mongoose.connect('mongodb+srv://egide:12345@cluster0.9zsmg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
+      mongoose.connect('mongodb://upzyxwqieslgpatyvigu:DXOoe9zh3h0krC42MJKe@btrowphmh7ovzhg-mongodb.services.clever-cloud.com:27017/btrowphmh7ovzhg')
       ,
   },
 ];
