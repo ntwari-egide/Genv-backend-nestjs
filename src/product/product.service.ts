@@ -1,6 +1,6 @@
 /**
  * @author: ntwari egide
- * @description: User service implementation
+ * @description: product service implementation
  */
 
 import { Inject, Injectable, Logger } from '@nestjs/common';

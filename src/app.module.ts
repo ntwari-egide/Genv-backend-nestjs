@@ -9,8 +9,9 @@ import { AppService } from './app.service';
 import { DatabaseModule } from './database/database.module';
 import { OrderedProductsModule } from './ordered-products/ordered-products.module';
 import { ProductModule } from './product/product.module';
+import { OrdersModule } from './orders/orders.module';
 @Module({
-  imports: [ ProductModule,DatabaseModule, OrderedProductsModule],
+  imports: [ ProductModule,DatabaseModule, OrderedProductsModule, OrdersModule],
   controllers: [AppController],
   providers: [AppService],
 })
