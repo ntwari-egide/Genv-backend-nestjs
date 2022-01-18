@@ -9,6 +9,7 @@ import { ProductNotFoundException } from 'src/exceptions/ProductNotFoundExceptio
 import { CreateProductDto } from './dto/create-product.dto';
 import { Product } from './product.interface';
 import { UpdateProductDto } from './dto/update-product.dto';
+import { GlobalCustomizedApiResponse } from 'src/global-dto/api-response';
 
 @Injectable()
 export class ProductService {
@@ -17,6 +18,8 @@ export class ProductService {
     @Inject('PRODUCT_MODEL')
     private productModel: Model<Product>
   ){}
+
+  private responseHandler = new GlobalCustomizedApiResponse()
 
   private readonly logger = new Logger(ProductService.name)
 
@@ -27,11 +30,22 @@ export class ProductService {
     return registerProduct.save()
   }
 
-  async findAll(): Promise<Product[]> {
+  async findAll(): Promise<GlobalCustomizedApiResponse> {
+
 
     this.logger.log('Getting list of all products')
 
-    return this.productModel.find().exec()
+    this.responseHandler.message = "Getting list of all products"
+
+    this.responseHandler.status = "success"
+
+    let data = await  this.productModel.find().exec()
+
+    this.responseHandler.payload = data
+
+    this.responseHandler.length = data.length
+
+    return this.responseHandler
 
   }
 
@@ -53,19 +67,39 @@ export class ProductService {
     return product
   }
 
-  async findOne(id: String): Promise<Product> {
+  async findOne(id: String): Promise<GlobalCustomizedApiResponse> {
 
-    return this.checkProductExistence(id)
+    let data =  this.checkProductExistence(id)
+
+    this.responseHandler.status = "success"
+
+    this.responseHandler.message = 'Getting a product with id : '+id
+
+    this.responseHandler.payload = data
+
+    this.responseHandler.length = 1
+
+    return this.responseHandler
 
   }
 
-  async update(id: String, updateProductDto: UpdateProductDto): Promise<Product> {
+  async update(id: String, updateProductDto: UpdateProductDto): Promise<GlobalCustomizedApiResponse> {
     
     this.checkProductExistence(id)
 
     this.logger.log('Updating a product with id : '+id)
 
-    return this.productModel.findByIdAndUpdate(id, updateProductDto).exec()
+    let data = this.productModel.findOneAndUpdate(id, updateProductDto).exec()
+
+    this.responseHandler.status = "success"
+
+    this.responseHandler.message = 'Updating a product with id : '+id
+
+    this.responseHandler.payload = data
+
+    this.responseHandler.length = 1
+
+    return this.responseHandler
 
   }
 
@@ -75,7 +109,17 @@ export class ProductService {
 
     this.logger.log('Deleting a product with id : '+id)
 
-    return this.productModel.findByIdAndRemove(id).exec()
+    let data = this.productModel.findByIdAndRemove(id).exec()
+
+    this.responseHandler.status = "success"
+
+    this.responseHandler.message = 'Updating a product with id : '+id
+
+    this.responseHandler.payload = data
+
+    this.responseHandler.length = 1
+
+    return this.responseHandler
 
   }
 }

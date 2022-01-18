@@ -14,11 +14,13 @@ export class ProductsController {
 
   @Post()
   create(@Body() createUpdateDto: CreateProductDto) {
+
     return this.productService.create(createUpdateDto);
   }
 
   @Get()
   findAll() {
+
     return this.productService.findAll();
   }
 

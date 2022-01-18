@@ -5,7 +5,7 @@
 
 
  import * as mongoose from 'mongoose';
-import { ProductSchema } from 'src/user/entities/product.entity';
+import { ProductSchema } from 'src/product/entities/product.entity';
 
  export const OrderedProductSchema = new mongoose.Schema({
  

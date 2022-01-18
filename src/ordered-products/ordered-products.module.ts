@@ -9,8 +9,8 @@ import { OrderedProductsController } from './ordered-products.controller';
 import { orderedProductProvider } from './ordered-products.provider';
 import { DatabaseModule } from 'src/database/database.module';
 import { ThrottlerModule } from '@nestjs/throttler';
-import { ProductService } from 'src/user/product.service';
-import { productsProvider } from 'src/user/product.provider';
+import { ProductService } from 'src/product/product.service';
+import { productsProvider } from 'src/product/product.provider';
 
 @Module({
   imports: [

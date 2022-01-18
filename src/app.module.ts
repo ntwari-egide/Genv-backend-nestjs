@@ -8,7 +8,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DatabaseModule } from './database/database.module';
 import { OrderedProductsModule } from './ordered-products/ordered-products.module';
-import { ProductModule } from './user/product.module';
+import { ProductModule } from './product/product.module';
 @Module({
   imports: [ ProductModule,DatabaseModule, OrderedProductsModule],
   controllers: [AppController],

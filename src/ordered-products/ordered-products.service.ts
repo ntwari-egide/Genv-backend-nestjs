@@ -6,7 +6,7 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { OrderedProductNotFoundException } from 'src/exceptions/OrderedProductNotFoundException';
-import { ProductService } from 'src/user/product.service';
+import { ProductService } from 'src/product/product.service';
 import { CreateOrderedProductDto } from './dto/create-ordered-product.dto';
 import { UpdateOrderedProductDto } from './dto/update-ordered-product.dto';
 import { OrderedProduct } from './ordered-products.interface';
