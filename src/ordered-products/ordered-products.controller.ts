@@ -1,3 +1,8 @@
+/**
+ * @author: ntwari egide
+ * @description: ordered products controller endpoints handler
+ */
+
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { OrderedProductsService } from './ordered-products.service';
 import { CreateOrderedProductDto } from './dto/create-ordered-product.dto';
