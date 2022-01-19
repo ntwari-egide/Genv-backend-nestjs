@@ -19,16 +19,16 @@ export class ShippedProductsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.shippedProductsService.findOne(+id);
+    return this.shippedProductsService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateShippedProductDto: UpdateShippedProductDto) {
-    return this.shippedProductsService.update(+id, updateShippedProductDto);
+    return this.shippedProductsService.update(id, updateShippedProductDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.shippedProductsService.remove(+id);
+    return this.shippedProductsService.remove(id);
   }
 }

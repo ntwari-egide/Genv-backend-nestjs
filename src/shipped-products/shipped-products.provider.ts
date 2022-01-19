@@ -7,7 +7,7 @@
 import { ShippedProductSchema } from "./entities/shipped-product.entity";
  
  
- export const storedProductProvider = [
+ export const shippedProductProvider = [
      {
          provide: "SHIPPED_PRODUCT_MODEL",
          useFactory: (connection: Connection) => connection.model("Shipped-product", ShippedProductSchema),
