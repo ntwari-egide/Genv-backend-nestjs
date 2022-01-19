@@ -3,7 +3,7 @@
  * @description: update shipped product dto
  */
 
- import { ApiProperty, PartialType } from '@nestjs/swagger';
+import { ApiProperty, PartialType } from '@nestjs/swagger';
 import { CreateShippedProductDto } from './create-shipped-product.dto';
  
  export class UpdateShippedProductDto extends PartialType(CreateShippedProductDto) {
