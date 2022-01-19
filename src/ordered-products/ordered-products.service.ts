@@ -33,9 +33,9 @@ export class OrderedProductsService {
 
     let newOrderedProduct =  new this.orderedProductModel(createOrderedProductDto)
 
-    let relatedProduct = this.productService.checkProductExistence(createOrderedProductDto.productId)
-
-    newOrderedProduct.product = relatedProduct
+    let relatedProduct = await this.productService.checkProductExistence(createOrderedProductDto.productId)
+    
+    newOrderedProduct.product =  relatedProduct
 
     this.logger.log("Add new ordered product ....")
 
@@ -94,7 +94,7 @@ export class OrderedProductsService {
 
   async update(id: String, updateOrderedProductDto: UpdateOrderedProductDto) : Promise<GlobalCustomizedApiResponse>{
 
-    let relatedProduct = this.productService.checkProductExistence(updateOrderedProductDto.productId)
+    let relatedProduct = await this.productService.checkProductExistence(updateOrderedProductDto.productId)
 
     let orderedProduct = this.checkOrderedProductExistence(id)
 

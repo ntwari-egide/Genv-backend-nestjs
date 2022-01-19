@@ -15,7 +15,8 @@ export class UpdateOrderDto extends PartialType(CreateOrderDto) {
     orderId: String
 
     @ApiProperty({
-        description: "all ordered products"
+        description: "all ordered products",
+        type: [CreateOrderedProductDto]
     })
     orderedProducts: [CreateOrderedProductDto]
 }

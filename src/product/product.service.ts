@@ -49,10 +49,10 @@ export class ProductService {
 
   }
 
-  checkProductExistence = (id: String) : Product => {
+  async checkProductExistence (id: String) : Promise<Product> {
     let product : any
     try {
-      product = this.productModel.findById(id).exec()
+      product = await this.productModel.findById(id).exec()
 
       this.logger.log('Getting a product with id : '+id)
       
@@ -69,7 +69,7 @@ export class ProductService {
 
   async findOne(id: String): Promise<GlobalCustomizedApiResponse> {
 
-    let data =  this.checkProductExistence(id)
+    let data = await this.checkProductExistence(id) 
 
     this.responseHandler.status = "success"
 

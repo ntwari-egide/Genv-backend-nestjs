@@ -31,17 +31,19 @@ export class OrdersService {
 
     let newOrder = new this.orderModel(createOrderDto)    
 
-    let orderedProducts: [OrderedProduct] 
+    let orderedProducts: OrderedProduct[] = [] 
 
-    for(let id in createOrderDto.orderedProducts) {
-      let orderedProduct = this.orderedProductService.checkOrderedProductExistence(id)
+    for(let i in createOrderDto.orderedProducts) {
+
+      let orderedProduct = await this.orderedProductService.create(createOrderDto.orderedProducts[i])
 
       orderedProducts.push(orderedProduct)
     }
 
+
     newOrder.orderedProducts = orderedProducts
 
-    let savedOrder =  newOrder.save()
+    let savedOrder = await newOrder.save()
 
     this.responseHandler.status = "success"
 

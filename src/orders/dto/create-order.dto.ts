@@ -14,7 +14,8 @@ export class CreateOrderDto {
     orderId: String
 
     @ApiProperty({
-        description: "all ordered products"
+        description: "all ordered products",
+        type: [CreateOrderedProductDto]
     })
     orderedProducts: [CreateOrderedProductDto]
 
