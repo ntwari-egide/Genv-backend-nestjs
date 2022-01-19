@@ -1,9 +1,14 @@
+/**
+ * @author: ntwari egide
+ * @description: stored products controller endpoints handler
+ */
+
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { StoredProductsService } from './stored-products.service';
 import { CreateStoredProductDto } from './dto/create-stored-product.dto';
 import { UpdateStoredProductDto } from './dto/update-stored-product.dto';
 
-@Controller('stored-products')
+@Controller('api/v1/stored-products')
 export class StoredProductsController {
   constructor(private readonly storedProductsService: StoredProductsService) {}
 
@@ -19,16 +24,16 @@ export class StoredProductsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.storedProductsService.findOne(+id);
+    return this.storedProductsService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateStoredProductDto: UpdateStoredProductDto) {
-    return this.storedProductsService.update(+id, updateStoredProductDto);
+    return this.storedProductsService.update(id, updateStoredProductDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.storedProductsService.remove(+id);
+    return this.storedProductsService.remove(id);
   }
 }
