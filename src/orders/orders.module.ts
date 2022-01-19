@@ -11,6 +11,8 @@ import { ThrottlerModule } from '@nestjs/throttler';
 import { OrderedProductsService } from 'src/ordered-products/ordered-products.service';
 import { orderProvider } from './orders.provider';
 import { orderedProductProvider } from 'src/ordered-products/ordered-products.provider';
+import { ProductService } from 'src/product/product.service';
+import { productsProvider } from 'src/product/product.provider';
 
 @Module({
   imports: [
@@ -24,8 +26,10 @@ import { orderedProductProvider } from 'src/ordered-products/ordered-products.pr
   providers: [
     OrdersService,
     OrderedProductsService,
+    ProductService,
     ...orderProvider,
-    ...orderedProductProvider
+    ...orderedProductProvider,
+    ...productsProvider
   ]
 })
 export class OrdersModule {}
