@@ -16,5 +16,5 @@ import { CreateStoredProductDto } from './create-stored-product.dto';
          description: "quantity of a product"
      })
      quantity: Number
- }
+}
  
