@@ -11,8 +11,9 @@ import { OrderedProductsModule } from './ordered-products/ordered-products.modul
 import { ProductModule } from './product/product.module';
 import { OrdersModule } from './orders/orders.module';
 import { StoredProductsModule } from './stored-products/stored-products.module';
+import { ShippedProductsModule } from './shipped-products/shipped-products.module';
 @Module({
-  imports: [ ProductModule,DatabaseModule, OrderedProductsModule, OrdersModule, StoredProductsModule],
+  imports: [ ProductModule,DatabaseModule, OrderedProductsModule, OrdersModule, StoredProductsModule, ShippedProductsModule],
   controllers: [AppController],
   providers: [AppService],
 })
