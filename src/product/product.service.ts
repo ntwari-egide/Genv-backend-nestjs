@@ -3,7 +3,7 @@
  * @description: product service implementation
  */
 
-import { Inject, Injectable, Logger } from '@nestjs/common';
+import { Inject, Injectable, Logger, OnApplicationBootstrap, OnModuleInit } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { ProductNotFoundException } from 'src/exceptions/ProductNotFoundException';
 import { CreateProductDto } from './dto/create-product.dto';
@@ -12,22 +12,33 @@ import { UpdateProductDto } from './dto/update-product.dto';
 import { GlobalCustomizedApiResponse } from 'src/global-dto/api-response';
 
 @Injectable()
-export class ProductService {
+export class ProductService{
 
   constructor(  
     @Inject('PRODUCT_MODEL')
     private productModel: Model<Product>
   ){}
-
   private responseHandler = new GlobalCustomizedApiResponse()
 
   private readonly logger = new Logger(ProductService.name)
+
 
   async create(createProductDto: CreateProductDto): Promise<Product> {
 
     let registerProduct = new this.productModel(createProductDto)
 
+    this.logger.log('Saving new product to catelog ...')
+
     return registerProduct.save()
+  }
+
+  async initCatalog(products: CreateProductDto[]) {
+
+    for(let product in products) {      
+      this.create(products[product])
+      
+    }
+
   }
 
   async findAll(): Promise<GlobalCustomizedApiResponse> {
@@ -121,5 +132,9 @@ export class ProductService {
 
     return this.responseHandler
 
+  }
+
+  async removeAll() {
+    return this.productModel.remove({})
   }
 }

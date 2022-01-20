@@ -13,9 +13,15 @@ import { OrdersModule } from './orders/orders.module';
 import { StoredProductsModule } from './stored-products/stored-products.module';
 import { ShippedProductsModule } from './shipped-products/shipped-products.module';
 import { ShipmentsModule } from './shipments/shipments.module';
+import { ProductService } from './product/product.service';
+import { productsProvider } from './product/product.provider';
 @Module({
   imports: [ ProductModule,DatabaseModule, OrderedProductsModule, OrdersModule, StoredProductsModule, ShippedProductsModule, ShipmentsModule],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    ProductService,
+    ...productsProvider
+  ],
 })
 export class AppModule {}
