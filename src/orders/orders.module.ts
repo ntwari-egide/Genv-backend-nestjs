@@ -13,10 +13,16 @@ import { orderProvider } from './orders.provider';
 import { orderedProductProvider } from 'src/ordered-products/ordered-products.provider';
 import { ProductService } from 'src/product/product.service';
 import { productsProvider } from 'src/product/product.provider';
+import { StoredProductsService } from 'src/stored-products/stored-products.service';
+import { storedProductProvider } from 'src/stored-products/stored-products.provider';
+import { ShippedProductsService } from 'src/shipped-products/shipped-products.service';
+import { shippedProductProvider } from 'src/shipped-products/shipped-products.provider';
+import { StoredProductsModule } from 'src/stored-products/stored-products.module';
 
 @Module({
   imports: [
     DatabaseModule,
+    StoredProductsModule,
     ThrottlerModule.forRoot({
       ttl: 60,
       limit: 300
@@ -27,9 +33,13 @@ import { productsProvider } from 'src/product/product.provider';
     OrdersService,
     OrderedProductsService,
     ProductService,
+    ShippedProductsService,
+    StoredProductsService,
     ...orderProvider,
     ...orderedProductProvider,
-    ...productsProvider
+    ...productsProvider,
+    ...storedProductProvider,
+    ...shippedProductProvider
   ]
 })
 export class OrdersModule {}

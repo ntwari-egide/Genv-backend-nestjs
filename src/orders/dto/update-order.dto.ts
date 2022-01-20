@@ -19,4 +19,10 @@ export class UpdateOrderDto extends PartialType(CreateOrderDto) {
         type: [CreateOrderedProductDto]
     })
     requested: [CreateOrderedProductDto]
+
+    @ApiProperty({
+        description: "order status",
+        type: String
+    })
+    orderCompleteStatus: String
 }

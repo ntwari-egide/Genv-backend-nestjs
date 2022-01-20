@@ -17,10 +17,14 @@ import { DatabaseModule } from 'src/database/database.module';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { OrderedProductsService } from 'src/ordered-products/ordered-products.service';
 import { orderedProductProvider } from 'src/ordered-products/ordered-products.provider';
+import { StoredProductsModule } from 'src/stored-products/stored-products.module';
+import { StoredProductsService } from 'src/stored-products/stored-products.service';
+import { storedProductProvider } from 'src/stored-products/stored-products.provider';
 
 @Module({
   imports: [
     DatabaseModule,
+    StoredProductsModule,
     ThrottlerModule.forRoot({
       ttl: 60,
       limit: 300
@@ -33,11 +37,13 @@ import { orderedProductProvider } from 'src/ordered-products/ordered-products.pr
     OrdersService,
     ProductService,
     OrderedProductsService,
+    StoredProductsService,
     ...shippedProductProvider,
     ...shipmentProvider,
     ...orderProvider,
     ...productsProvider,
-    ...orderedProductProvider
+    ...orderedProductProvider,
+    ...storedProductProvider
   ]
 })
 export class ShipmentsModule {}

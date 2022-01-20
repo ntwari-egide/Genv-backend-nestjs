@@ -24,5 +24,5 @@ export class UpdateProductDto extends PartialType(CreateProductDto) {
         description: "Mass of product",
         type: Number
     })
-    mass_g: Number
+    mass_g: number
 }

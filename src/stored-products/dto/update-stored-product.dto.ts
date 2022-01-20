@@ -15,6 +15,6 @@ import { CreateStoredProductDto } from './create-stored-product.dto';
      @ApiProperty({
          description: "quantity of a product"
      })
-     quantity: Number
+     quantity: number
 }
  

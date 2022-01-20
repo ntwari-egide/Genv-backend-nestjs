@@ -11,7 +11,7 @@ export interface Product extends Document {
 
     productName: String,
   
-    mass_g: Number,
+    mass_g: number,
   
     storedAt: Date
 }

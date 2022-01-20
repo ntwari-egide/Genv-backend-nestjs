@@ -9,6 +9,8 @@ import { OrderedProduct } from 'src/ordered-products/ordered-products.interface'
 export interface Order extends Document {
    orderId: String,
 
-   orderedProducts: OrderedProduct[]
+   orderedProducts: OrderedProduct[],
+
+   orderCompleteStatus: String
 
 }

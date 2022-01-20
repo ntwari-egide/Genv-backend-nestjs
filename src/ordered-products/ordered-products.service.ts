@@ -96,6 +96,15 @@ export class OrderedProductsService {
     return this.responseHandler
   }
 
+  updateOrderStatus(id: String, isShippedStatus: Boolean) {
+    let productFound = this.checkOrderedProductExistence(id);
+
+    productFound.isShipped = isShippedStatus
+    
+    return this.orderedProductModel.findOneAndUpdate(id, productFound)   
+
+  }
+
   async update(id: String, updateOrderedProductDto: UpdateOrderedProductDto) : Promise<GlobalCustomizedApiResponse>{
 
     let relatedProduct = await this.productService.checkProductExistence(updateOrderedProductDto.productId)

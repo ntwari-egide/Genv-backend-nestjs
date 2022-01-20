@@ -10,6 +10,6 @@ import { Product } from 'src/product/product.interface';
 export interface StoredProduct extends Document {
    product: Product,
 
-   quantity: Number
+   quantity: number
 
 }

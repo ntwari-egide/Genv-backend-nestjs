@@ -11,6 +11,8 @@ export const OrderSchema = new mongoose.Schema ({
 
     orderId: String,
 
-    orderedProducts : [OrderedProductSchema]
+    orderedProducts : [OrderedProductSchema],
+
+    orderCompleteStatus: String
 
 })

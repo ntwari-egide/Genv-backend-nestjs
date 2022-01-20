@@ -15,6 +15,6 @@ export class CreateOrderedProductDto {
     @ApiProperty({
         description: "quantity of a product"
     })
-    quantity: Number
+    quantity: number
 
 }

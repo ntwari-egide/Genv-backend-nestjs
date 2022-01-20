@@ -15,7 +15,7 @@ export class UpdateOrderedProductDto extends PartialType(CreateOrderedProductDto
     @ApiProperty({
         description: "quantity of a product"
     })
-    quantity: Number
+    quantity: number
 
     @ApiProperty({
         description: "quantity of a product"
