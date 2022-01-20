@@ -135,6 +135,8 @@ export class ProductService{
   }
 
   async removeAll() {
-    return this.productModel.remove({})
+    this.logger.log('Clearing all products details .... ')
+ 
+    return this.productModel.deleteMany({})
   }
 }

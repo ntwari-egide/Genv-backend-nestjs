@@ -11,6 +11,10 @@ import { ProductSchema } from 'src/product/entities/product.entity';
  
     product: ProductSchema,
  
-    quantity: Number
+    quantity: Number,
+
+    isShipped: Boolean,
+
+    orderedAt: Date
  
  });

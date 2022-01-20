@@ -20,7 +20,6 @@ export class AppController implements OnApplicationBootstrap {
       this.productService.removeAll()
 
       console.log('Calling initilize catelog ....');
-
     
       let productInfo = [{"mass_g": 700, "productName": "RBC A+ Adult", "productId": '0'}, {"mass_g": 700,
       "productName": "RBC B+ Adult", "productId": '1'}, {"mass_g": 750, "productName": "RBC  AB+ Adult", "productId": '2'}, {"mass_g": 680, "productName": "RBC O- Adult",

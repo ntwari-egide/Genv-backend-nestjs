@@ -33,9 +33,9 @@ export class OrdersService {
 
     let orderedProducts: OrderedProduct[] = [] 
 
-    for(let i in createOrderDto.orderedProducts) {
+    for(let i in createOrderDto.requested) {
 
-      let orderedProduct = await this.orderedProductService.create(createOrderDto.orderedProducts[i])
+      let orderedProduct = await this.orderedProductService.create(createOrderDto.requested[i])
 
       orderedProducts.push(orderedProduct)
     }
@@ -116,7 +116,7 @@ export class OrdersService {
 
     let orderedProducts: [OrderedProduct] 
 
-    for(let id in updateOrderDto.orderedProducts) {
+    for(let id in updateOrderDto.requested) {
       let orderedProduct = this.orderedProductService.checkOrderedProductExistence(id)
 
       orderedProducts.push(orderedProduct)

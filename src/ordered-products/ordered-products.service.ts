@@ -37,6 +37,10 @@ export class OrderedProductsService {
     
     newOrderedProduct.product =  relatedProduct
 
+    newOrderedProduct.isShipped = false
+
+    newOrderedProduct.orderedAt = new Date()
+
     this.logger.log("Add new ordered product ....")
 
     return newOrderedProduct.save()
@@ -99,6 +103,10 @@ export class OrderedProductsService {
     let orderedProduct = this.checkOrderedProductExistence(id)
 
     orderedProduct.product = relatedProduct
+
+    orderedProduct.isShipped = updateOrderedProductDto.isShipped
+
+    orderedProduct.orderedAt = new Date()
 
     this.logger.log('Updating ordered product with id : '+id)
 

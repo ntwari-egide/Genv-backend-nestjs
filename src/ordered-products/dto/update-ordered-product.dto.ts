@@ -16,4 +16,9 @@ export class UpdateOrderedProductDto extends PartialType(CreateOrderedProductDto
         description: "quantity of a product"
     })
     quantity: Number
+
+    @ApiProperty({
+        description: "quantity of a product"
+    })
+    isShipped: Boolean
 }

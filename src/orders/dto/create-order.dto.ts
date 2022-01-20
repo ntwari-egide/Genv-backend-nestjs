@@ -17,6 +17,6 @@ export class CreateOrderDto {
         description: "all ordered products",
         type: [CreateOrderedProductDto]
     })
-    orderedProducts: [CreateOrderedProductDto]
+    requested: [CreateOrderedProductDto]
 
 }

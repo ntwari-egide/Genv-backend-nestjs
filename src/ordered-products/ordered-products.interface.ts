@@ -10,6 +10,10 @@ import { Product } from 'src/product/product.interface';
 export interface OrderedProduct extends Document {
    product: Product,
 
-   quantity: Number
+   quantity: Number,
+
+   isShipped: Boolean,
+
+   orderedAt: Date
 
 }

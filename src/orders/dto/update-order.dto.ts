@@ -18,5 +18,5 @@ export class UpdateOrderDto extends PartialType(CreateOrderDto) {
         description: "all ordered products",
         type: [CreateOrderedProductDto]
     })
-    orderedProducts: [CreateOrderedProductDto]
+    requested: [CreateOrderedProductDto]
 }
