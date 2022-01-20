@@ -12,6 +12,6 @@ export interface Shipment extends Document {
 
     order: Order,
 
-    shippedProduct: ShippedProduct[]
+    shippedProducts: ShippedProduct[]
 
 }

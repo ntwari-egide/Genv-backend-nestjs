@@ -34,7 +34,9 @@ async function bootstrap() {
 
   SwaggerModule.setup('swagger-ui', app, document)
 
-  await app.listen(process.env.PORT || 3000);
+  await app.listen(process.env.PORT || 3000, () => {
+    console.log('Called first......');
+  });
   
 }
 bootstrap();

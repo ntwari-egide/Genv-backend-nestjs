@@ -6,7 +6,7 @@
  import { connection, Connection } from "mongoose";
 import { ShipmentSchema } from "./entities/shipment.entity";
  
- export const orderProvider = [
+ export const shipmentProvider = [
      {
          provide: "SHIPMENT_MODEL",
          useFactory: (connnection: Connection) => connection.model("Shipments", ShipmentSchema),
