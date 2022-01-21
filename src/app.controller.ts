@@ -17,7 +17,7 @@ export class AppController implements OnApplicationBootstrap {
   
       console.log('Clearing all stored data....');
 
-      // this.productService.removeAll()
+      this.productService.removeAll()
 
       console.log('Calling initilize catelog ....');
     
@@ -31,7 +31,7 @@ export class AppController implements OnApplicationBootstrap {
       "FFP A+", "productId": '10'}, {"mass_g": 300, "productName": "FFP B+", "productId": '11'},
       {"mass_g": 300, "productName": "FFP AB+", "productId": '12'}]
 
-      // this.productService.initCatalog(productInfo)
+      this.productService.initCatalog(productInfo)
   
   }
 
