@@ -8,11 +8,9 @@
 2.  [Getting Started](#getting-started)
     -   [Prerequisites](#prerequisites)
     -   [Installation](#installation)
-3.  [Usage](#usage)
-4.  [Roadmap](#roadmap)
-5.  [Contributing](#contributing)
-6.  [License](#license)
-7.  [Contact](#contact)
+3.  [Contributing](#contributing)
+4.  [License](#license)
+5.  [Contact](#contact)
 ##  [](#about)About The Project
 
 GenV is a logistics and delivery company that both flies autonomous vehicles and operates a full-fledged logistics system. It runs operations out of our distribution centers, which are called "nests." At a given nest, there is an inventory of medical supplies and a team of operators who manage that inventory and process orders from doctors.
@@ -79,7 +77,9 @@ Processes performed:
 
 ### []()Process restock
 Api: [https://genv-backend-apis.herokuapp.com/api/v1/stored-products/restock](https://genv-backend-apis.herokuapp.com/api/v1/stored-products/restock)
+
 Request: 
+
 ```json
 [
   {"productId": "61eaaf452e172df3e75d6db5", "quantity": 30}, {"productId": "61eaaf452e172df3e75d6db6", "quantity": 25}
