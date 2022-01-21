@@ -22,5 +22,5 @@ export class CreateShipmentDto {
         description: "all shipped products products",
         type: [CreateShippedProductDto]
     })
-    shippedProducts: [CreateShippedProductDto]
+    shippedProducts: CreateShippedProductDto[]
 }

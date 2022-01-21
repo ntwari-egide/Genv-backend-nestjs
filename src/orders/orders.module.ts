@@ -34,13 +34,13 @@ import { shipmentProvider } from 'src/shipments/shipment.provider';
     OrderedProductsService,
     ProductService,
     StoredProductsService,
-    ShippedProductsService,
     ShipmentsService,
-    ...shipmentProvider,
+    ShippedProductsService,
     ...orderProvider,
     ...orderedProductProvider,
     ...productsProvider,
     ...storedProductProvider,
+    ...shipmentProvider,
     ...shippedProductProvider
   ]
 })

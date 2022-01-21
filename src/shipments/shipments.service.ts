@@ -20,10 +20,11 @@ export class ShipmentsService {
   constructor(
     @Inject('SHIPMENT_MODEL')
     private shipmentModel : Model<Shipment>,
+    
+    private orderService: OrdersService,
 
-    private shippedProductService: ShippedProductsService,
+    private shippedProductService: ShippedProductsService
 
-    private orderService: OrdersService
   ){}
 
 

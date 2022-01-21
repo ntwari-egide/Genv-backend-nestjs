@@ -11,7 +11,6 @@ import { OrderedProduct } from 'src/ordered-products/ordered-products.interface'
 import { OrderedProductsService } from 'src/ordered-products/ordered-products.service';
 import { CreateShipmentDto } from 'src/shipments/dto/create-shipment.dto';
 import { CreateShippedProductDto } from 'src/shipped-products/dto/create-shipped-product.dto';
-import { ShippedProductsService } from 'src/shipped-products/shipped-products.service';
 import { StoredProductsService } from 'src/stored-products/stored-products.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
@@ -27,8 +26,8 @@ export class OrdersService {
     private orderedProductService: OrderedProductsService,
 
     private storedProductService: StoredProductsService,
+    
 
-    private shipmentsService: ShippedProductsService    
   ){}
 
   private responseHandler = new GlobalCustomizedApiResponse()
@@ -95,13 +94,15 @@ export class OrdersService {
     
     let savedOrder = await newOrder.save()
 
+    let productsTobeShipped: CreateShippedProductDto[] = []
+
     for(let i in orderedProducts) 
 
       if(this.storedProductService.checkStoredProductAvailabilityAndReduceStore(orderedProducts[i].product.id, orderedProducts[i].quantity))  {
         
         counter ++ 
 
-        // shiping a product from store
+        // recording a product to be shipped from store
 
         let shippedProduct : CreateShippedProductDto= {
           productId: undefined,
@@ -113,21 +114,24 @@ export class OrdersService {
 
         shippedProduct.quantity = orderedProducts[i].quantity
 
-        let shipment: CreateShipmentDto = {
-          shipmentId: undefined,
-          orderId: undefined,
-          shippedProducts: [shippedProduct]
-        }
-
-        shipment.shipmentId = ""
-
-        shipment.orderId = newOrder.id
+        productsTobeShipped.push(shippedProduct)
 
         // updating stored product
         this.orderedProductService.updateOrderStatus(orderedProducts[i].id, true)
         
       }
-     
+
+      // shipping a package of products 
+
+      let shipment: CreateShipmentDto = {
+        shipmentId: undefined,
+        orderId: undefined,
+        shippedProducts: productsTobeShipped
+      }
+
+
+
+
 
     // changing status of an order
     
