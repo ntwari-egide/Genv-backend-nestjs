@@ -179,11 +179,17 @@ Swagger documentation:
 Models analysis:
 
 `	- Product: {"mass_g": 700, "product_name": "RBC A+ Adult", "product_id": 0}`
+
 	`- Ordered Product: {"product_id": 0, "quantity": 2}`
+	
 	`- Order: {order_id: "", [Ordered products]}`
+	
 	`- Stored product: {product_id: "",  quantity}`
+	
 	`- Shipped product: {product_id: "",  quantity}`
+	
 	`- Shipment: {shipmentId: "", order, [shipped product]}`
+
 
 
 #### [](#build-with) Build with
