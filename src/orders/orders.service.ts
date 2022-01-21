@@ -26,8 +26,7 @@ export class OrdersService {
     private orderedProductService: OrderedProductsService,
 
     private storedProductService: StoredProductsService,
-    
-
+      
   ){}
 
   private responseHandler = new GlobalCustomizedApiResponse()
