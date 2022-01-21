@@ -9,6 +9,9 @@ import { OrderNotFoundException } from 'src/exceptions/OrderNotFoundException';
 import { GlobalCustomizedApiResponse } from 'src/global-dto/api-response';
 import { OrderedProduct } from 'src/ordered-products/ordered-products.interface';
 import { OrderedProductsService } from 'src/ordered-products/ordered-products.service';
+import { CreateShipmentDto } from 'src/shipments/dto/create-shipment.dto';
+import { CreateShippedProductDto } from 'src/shipped-products/dto/create-shipped-product.dto';
+import { ShippedProductsService } from 'src/shipped-products/shipped-products.service';
 import { StoredProductsService } from 'src/stored-products/stored-products.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
@@ -23,7 +26,9 @@ export class OrdersService {
 
     private orderedProductService: OrderedProductsService,
 
-    private storedProductService: StoredProductsService
+    private storedProductService: StoredProductsService,
+
+    private shipmentsService: ShippedProductsService    
   ){}
 
   private responseHandler = new GlobalCustomizedApiResponse()
@@ -71,7 +76,6 @@ export class OrdersService {
       this.responseHandler.status = "FAILED"
 
       this.responseHandler.message = 'Your order is bigger than 1.8kg, can not be handled by single shipment '
-  
       this.responseHandler.payload = []
   
       this.responseHandler.length = 0
@@ -83,22 +87,55 @@ export class OrdersService {
 
     let counter = 0
 
-    for(let i in createOrderDto.requested) {
-
-      if(this.storedProductService.checkStoredProductAvailabilityAndReduceStore(createOrderDto.requested[i].productId, createOrderDto.requested[i].quantity))  counter ++ 
-      
-    }
-    
-
-    console.log('Counter: ',counter);
-    
-
+    // saving an order 
 
     newOrder.orderedProducts = orderedProducts
 
-    newOrder.orderCompleteStatus = "NO_COMPLETED"
-
+    newOrder.orderCompleteStatus = "COMPLETED"
+    
     let savedOrder = await newOrder.save()
+
+    for(let i in orderedProducts) 
+
+      if(this.storedProductService.checkStoredProductAvailabilityAndReduceStore(orderedProducts[i].product.id, orderedProducts[i].quantity))  {
+        
+        counter ++ 
+
+        // shiping a product from store
+
+        let shippedProduct : CreateShippedProductDto= {
+          productId: undefined,
+          quantity: undefined
+        }
+
+
+        shippedProduct.productId = orderedProducts[i].product.id 
+
+        shippedProduct.quantity = orderedProducts[i].quantity
+
+        let shipment: CreateShipmentDto = {
+          shipmentId: undefined,
+          orderId: undefined,
+          shippedProducts: [shippedProduct]
+        }
+
+        shipment.shipmentId = ""
+
+        shipment.orderId = newOrder.id
+
+        // updating stored product
+        this.orderedProductService.updateOrderStatus(orderedProducts[i].id, true)
+        
+      }
+     
+
+    // changing status of an order
+    
+    
+
+    // if(counter == createOrderDto.requested.length) this.updateOrderStatus(savedOrder.id, "COMPLETED")
+
+    // if(counter < createOrderDto.requested.length && counter != 0) this.updateOrderStatus(savedOrder.id, "PARTIAL")
 
     this.responseHandler.status = "success"
 
@@ -110,6 +147,7 @@ export class OrdersService {
 
     return this.responseHandler
   }
+  
 
   async findAll(): Promise<GlobalCustomizedApiResponse> {
     
@@ -165,12 +203,17 @@ export class OrdersService {
 
   }
 
-  updateOrderStatus(id: String, orderCompleteStatus: String) {
-    let orderFound = this.checkOrderExistence(id);
-
-    orderFound.orderCompleteStatus = orderCompleteStatus
+  async updateOrderStatus(id: String, orderCompleteStatus: String) {
     
-    let savedOrder =  this.orderModel.findOneAndUpdate(id, orderFound)   
+    let storeFound = await this.checkOrderExistence(id);
+
+    storeFound._id = id
+
+    storeFound.orderCompleteStatus = orderCompleteStatus
+    
+    let data =  this.orderModel.findOneAndUpdate(id, storeFound)
+
+    return data
 
   }
 

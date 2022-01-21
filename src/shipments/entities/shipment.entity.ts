@@ -10,5 +10,5 @@ import { ShippedProductSchema } from 'src/shipped-products/entities/shipped-prod
 export const ShipmentSchema = new mongoose.Schema ({
     shipmentId: String,
     order: OrderSchema,
-    shippedProduct: [ShippedProductSchema]
+    shippedProducts: [ShippedProductSchema]
 })

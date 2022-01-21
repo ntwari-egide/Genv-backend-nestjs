@@ -43,16 +43,17 @@ export class ShipmentsService {
 
       let shippedProduct = await this.shippedProductService.create(createShipmentDto.shippedProducts[i])
 
-      shippedProducts.push(shippedProduct)
+      shippedProducts.push(await shippedProduct)
     }
-
-    console.log('shimpments: ',await shippedProducts);
 
     newShipment.shippedProducts = await shippedProducts
 
-    let order = await this.orderService.checkOrderExistence(createShipmentDto.orderId)
+    let order = await  this.orderService.checkOrderExistence(createShipmentDto.orderId)
 
     newShipment.order = order
+
+    console.log('data: ', newShipment);
+    
     
     let savedShipment = await newShipment.save()
 

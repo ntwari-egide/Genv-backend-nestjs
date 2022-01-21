@@ -17,12 +17,12 @@ import { StoredProductsService } from 'src/stored-products/stored-products.servi
 import { storedProductProvider } from 'src/stored-products/stored-products.provider';
 import { ShippedProductsService } from 'src/shipped-products/shipped-products.service';
 import { shippedProductProvider } from 'src/shipped-products/shipped-products.provider';
-import { StoredProductsModule } from 'src/stored-products/stored-products.module';
+import { ShipmentsService } from 'src/shipments/shipments.service';
+import { shipmentProvider } from 'src/shipments/shipment.provider';
 
 @Module({
   imports: [
     DatabaseModule,
-    StoredProductsModule,
     ThrottlerModule.forRoot({
       ttl: 60,
       limit: 300
@@ -33,8 +33,10 @@ import { StoredProductsModule } from 'src/stored-products/stored-products.module
     OrdersService,
     OrderedProductsService,
     ProductService,
-    ShippedProductsService,
     StoredProductsService,
+    ShippedProductsService,
+    ShipmentsService,
+    ...shipmentProvider,
     ...orderProvider,
     ...orderedProductProvider,
     ...productsProvider,

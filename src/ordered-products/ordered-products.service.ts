@@ -100,6 +100,9 @@ export class OrderedProductsService {
     let productFound = this.checkOrderedProductExistence(id);
 
     productFound.isShipped = isShippedStatus
+
+    this.logger.log('Updated ordered product status, with id : '+id)
+
     
     return this.orderedProductModel.findOneAndUpdate(id, productFound)   
 

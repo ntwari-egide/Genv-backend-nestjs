@@ -20,11 +20,14 @@ import { orderedProductProvider } from 'src/ordered-products/ordered-products.pr
 import { StoredProductsModule } from 'src/stored-products/stored-products.module';
 import { StoredProductsService } from 'src/stored-products/stored-products.service';
 import { storedProductProvider } from 'src/stored-products/stored-products.provider';
+import { ProductModule } from 'src/product/product.module';
+import { OrderedProductsModule } from 'src/ordered-products/ordered-products.module';
+import { OrdersModule } from 'src/orders/orders.module';
+import { ShippedProductsModule } from 'src/shipped-products/shipped-products.module';
 
 @Module({
   imports: [
     DatabaseModule,
-    StoredProductsModule,
     ThrottlerModule.forRoot({
       ttl: 60,
       limit: 300
