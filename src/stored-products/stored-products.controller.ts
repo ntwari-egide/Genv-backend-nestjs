@@ -17,10 +17,17 @@ export class StoredProductsController {
     return this.storedProductsService.create(createStoredProductDto);
   }
 
+  @Post("/restock")
+  restock(@Body() restockProducts: CreateStoredProductDto[]) {
+    return this.storedProductsService.restock(restockProducts)
+  }
+
   @Get()
   findAll() {
     return this.storedProductsService.findAll();
   }
+
+
 
   @Get(':id')
   findOne(@Param('id') id: string) {

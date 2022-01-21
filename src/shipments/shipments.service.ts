@@ -20,7 +20,7 @@ export class ShipmentsService {
   constructor(
     @Inject('SHIPMENT_MODEL')
     private shipmentModel : Model<Shipment>,
-    
+
     private orderService: OrdersService,
 
     private shippedProductService: ShippedProductsService
@@ -51,12 +51,11 @@ export class ShipmentsService {
 
     let order = await  this.orderService.checkOrderExistence(createShipmentDto.orderId)
 
-    newShipment.order = order
-
-    console.log('data: ', newShipment);
-    
+    newShipment.order = order    
     
     let savedShipment = await newShipment.save()
+
+    console.log('New shipmentModel: ', newShipment);
 
     this.responseHandler.status = "success"
 

@@ -11,8 +11,6 @@ import { ProductService } from 'src/product/product.service';
 import { productsProvider } from 'src/product/product.provider';
 import { DatabaseModule } from 'src/database/database.module';
 import { ThrottlerModule } from '@nestjs/throttler';
-import { orderedProductProvider } from 'src/ordered-products/ordered-products.provider';
-import { OrderedProductsService } from 'src/ordered-products/ordered-products.service';
 
 @Module({
   imports: [
@@ -26,8 +24,6 @@ import { OrderedProductsService } from 'src/ordered-products/ordered-products.se
   providers: [
     StoredProductsService,
     ProductService,
-    OrderedProductsService,
-    ...orderedProductProvider,
     ...storedProductProvider,
     ...productsProvider
   ]

@@ -7,7 +7,6 @@ import { Inject, Injectable, Logger } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { StoredProductNotFoundException } from 'src/exceptions/StoredProductNotFoundException';
 import { GlobalCustomizedApiResponse } from 'src/global-dto/api-response';
-import { OrderedProductsService } from 'src/ordered-products/ordered-products.service';
 import { ProductService } from 'src/product/product.service';
 import { CreateStoredProductDto } from './dto/create-stored-product.dto';
 import { UpdateStoredProductDto } from './dto/update-stored-product.dto';
@@ -21,8 +20,7 @@ export class StoredProductsService {
     private storedProductModel: Model<StoredProduct>,
 
     private productService: ProductService,
-
-    private orderedProductService: OrderedProductsService
+    
   ){}
 
   private responseHandler = new GlobalCustomizedApiResponse()
@@ -54,6 +52,12 @@ export class StoredProductsService {
 
     }
 
+  }
+
+  async restock(restockProducts: CreateStoredProductDto[]) {
+    for(let i in restockProducts) {
+      this.create(restockProducts[i])
+    }
   }
 
 
